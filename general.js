@@ -14,7 +14,7 @@
     let lastTime = 0;
     let pipeTimer = 0;
 
-    function gapRandom() {
+    function gapRandomFetch() {
         return rand(148, 248);
     }
 
@@ -41,7 +41,7 @@
 
     function addPipe() {
         const margin = 78;
-        const topHeight = margin + Math.random() * (height - groundHeight - gapRandom() - margin * 2);
+        const topHeight = margin + Math.random() * (height - groundHeight - gapRandomFetch() - margin * 2);
         pipes.push({ x: width + 10, top: topHeight, scored: false });
     }
 
@@ -64,7 +64,7 @@
         for (const pipe of pipes) {
             pipe.x -= 155 * delta;
             const inPipeX = bird.x + bird.radius > pipe.x && bird.x - bird.radius < pipe.x + pipeWidth;
-            if (inPipeX && (bird.y - bird.radius < pipe.top || bird.y + bird.radius > pipe.top + gapRandom())) endGame();
+            if (inPipeX && (bird.y - bird.radius < pipe.top || bird.y + bird.radius > pipe.top + gapRandomFetch())) endGame();
             if (!pipe.scored && pipe.x + pipeWidth < bird.x) {
                 pipe.scored = true;
                 score += 1;
@@ -94,7 +94,7 @@
 
     function drawPipes() {
         for (const pipe of pipes) {
-            const bottomY = pipe.top + gapRandom();
+            const bottomY = pipe.top + gapRandomFetch();
             ctx.fillStyle = "#318a59";
             ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
             ctx.fillRect(pipe.x, bottomY, pipeWidth, height - groundHeight - bottomY);
