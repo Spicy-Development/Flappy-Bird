@@ -1,44 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <script src="general.js"></script>
-    <script>
-
-
-
-        // Hello
-        var cool = 11;
- 
-
-
-        if (cool == 0) {
-            // Say hello.
-            print('hello');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flappy Bird</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
+            background: #d7f4f1;
+            color: #173c45;
         }
 
-        else if (cool == 1) {
-            // Say goodbye.
-            print('goodbye');
+        * {
+            box-sizing: border-box;
         }
 
-        else {
-            // Not sure what to say.
-            print('ruh roh');
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            background: radial-gradient(ellipse at 50% 10%, #f5ffdd 0, #d7f4f1 52%, #a9dcd4 100%);
         }
 
+        main {
+            width: min(100%, 440px);
+            text-align: center;
+        }
 
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2rem, 9vw, 3.5rem);
+            line-height: 1;
+            letter-spacing: 0;
+            color: #174b4f;
+            text-shadow: 2px 3px 0 #f6c95d;
+        }
 
+        .game-frame {
+            overflow: hidden;
+            border: 5px solid #174b4f;
+            border-radius: 8px;
+            background: #8ed8d2;
+            box-shadow: 0 10px 0 #174b4f, 0 18px 30px #174b4f30;
+        }
 
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            touch-action: manipulation;
+        }
 
+        p {
+            margin: 18px 0 0;
+            font-size: 1rem;
+            font-weight: 700;
+        }
 
-
-
-
-    </script>
+        .key {
+            color: #b94f39;
+        }
+    </style>
+    <script src="general.js" defer></script>
 </head>
 
 <body>
+    <main>
+        <h1>Flappy Bird</h1>
+        <div class="game-frame">
+            <canvas id="game" width="400" height="600" aria-label="Flappy Bird game"></canvas>
+        </div>
+        <p>Tap or press <span class="key">Space</span> to flap</p>
+    </main>
 </body>
 
 </html>
