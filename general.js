@@ -4,7 +4,7 @@
     const width = canvas.width;
     const height = canvas.height;
     const groundHeight = 58;
-    const bird = { x: 105, y: 220, velocity: 0, radius: 14 };
+    const bird = { x: 105, y: 270, velocity: 0, radius: 14 };
     const pipes = [];
     const pipeWidth = 62;
     const gapHeight = 158;
@@ -25,7 +25,7 @@
     }
 
     function flap() {
-        bird.velocity = -280;
+        bird.velocity = -260;
     }
 
     function handleAction(event) {
