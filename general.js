@@ -7,7 +7,7 @@
     const bird = { x: 105, y: 270, velocity: 0, radius: 14 };
     const pipes = [];
     const pipeWidth = 62;
-    const gapHeight = 158;
+    const gapHeight = 198; //158
     let score = 0;
     let best = Number(localStorage.getItem("flappy-best") || 0);
     let state = "ready";
