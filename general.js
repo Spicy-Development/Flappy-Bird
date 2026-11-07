@@ -25,7 +25,7 @@
     }
 
     function flap() {
-        bird.velocity = -220;
+        bird.velocity = -280;
     }
 
     function handleAction(event) {
