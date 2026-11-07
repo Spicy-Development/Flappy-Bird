@@ -27,6 +27,28 @@
             
         }
 
+        canvas#game {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+        }
+
+        @media (max-width: 900px) and (orientation: landscape) {
+            canvas#game {
+                width: 640px;
+                height: 480px;
+            }
+        }
+
+        @media (max-width: 768px) and (orientation: portrait) {
+            canvas#game {
+                width: 480px;
+                height: 640px;
+            }
+        }
+
         canvas {
             display: block;
             width: 100%;
@@ -43,7 +65,7 @@
 </head>
 
 <body>
-    <canvas id="game" width="480px" height="640px" style="position: absolute; top: 0; left: 0px; right: 0px; bottom: 0px;" aria-label=""></canvas>
+    <canvas id="game"></canvas>
 </body>
 
 </html>
