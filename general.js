@@ -25,7 +25,7 @@
     }
 
     function flap() {
-        bird.velocity = -280;
+        bird.velocity = -300; //-280
     }
 
     function handleAction(event) {
@@ -52,7 +52,7 @@
         bird.velocity += 1150 * delta;
         bird.y += bird.velocity * delta;
         pipeTimer += delta;
-        if (pipeTimer > 1.45) {
+        if (pipeTimer > 3) { //1.45
             addPipe();
             pipeTimer = 0;
         }
