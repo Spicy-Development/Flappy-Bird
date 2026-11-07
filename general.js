@@ -7,12 +7,16 @@
     const bird = { x: 105, y: 270, velocity: 0, radius: 14 };
     const pipes = [];
     const pipeWidth = 62;
-    const gapHeight = 198; //158
+    const gapRandom = 158; // 158, 198
     let score = 0;
     let best = Number(localStorage.getItem("flappy-best") || 0);
     let state = "ready";
     let lastTime = 0;
     let pipeTimer = 0;
+
+    function gapRandom() {
+        return rand(148, 248);
+    }
 
     function reset() {
         bird.y = 270;
@@ -37,7 +41,7 @@
 
     function addPipe() {
         const margin = 78;
-        const topHeight = margin + Math.random() * (height - groundHeight - gapHeight - margin * 2);
+        const topHeight = margin + Math.random() * (height - groundHeight - gapRandom() - margin * 2);
         pipes.push({ x: width + 10, top: topHeight, scored: false });
     }
 
@@ -60,7 +64,7 @@
         for (const pipe of pipes) {
             pipe.x -= 155 * delta;
             const inPipeX = bird.x + bird.radius > pipe.x && bird.x - bird.radius < pipe.x + pipeWidth;
-            if (inPipeX && (bird.y - bird.radius < pipe.top || bird.y + bird.radius > pipe.top + gapHeight)) endGame();
+            if (inPipeX && (bird.y - bird.radius < pipe.top || bird.y + bird.radius > pipe.top + gapRandom())) endGame();
             if (!pipe.scored && pipe.x + pipeWidth < bird.x) {
                 pipe.scored = true;
                 score += 1;
@@ -90,7 +94,7 @@
 
     function drawPipes() {
         for (const pipe of pipes) {
-            const bottomY = pipe.top + gapHeight;
+            const bottomY = pipe.top + gapRandom();
             ctx.fillStyle = "#318a59";
             ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
             ctx.fillRect(pipe.x, bottomY, pipeWidth, height - groundHeight - bottomY);
