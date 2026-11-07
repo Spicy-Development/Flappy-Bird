@@ -10,6 +10,7 @@
     const height = canvas.height;
     const groundHeight = 58;
     const bird = { x: 105, y: 270, velocity: 0, radius: 14 };
+    /** @type {{ x: number, top: number, gap: number, scored: boolean }} */
     const pipes = [];
     const pipeWidth = 62;
     let gapHeight = () => rand(148, 248); // 158, 198
@@ -42,8 +43,9 @@
 
     function addPipe() {
         const margin = 78;
-        const topHeight = margin + Math.random() * (height - groundHeight - gapHeight() - margin * 2);
-        pipes.push({ x: width + 10, top: topHeight, scored: false });
+        const gap = gapHeight();
+        const topHeight = margin + Math.random() * (height - groundHeight - gap - margin * 2);
+        pipes.push({ x: width + 10, top: topHeight, gap, scored: false });
     }
 
     function endGame() {
@@ -65,7 +67,7 @@
         for (const pipe of pipes) {
             pipe.x -= 155 * delta;
             const inPipeX = bird.x + bird.radius > pipe.x && bird.x - bird.radius < pipe.x + pipeWidth;
-            if (inPipeX && (bird.y - bird.radius < pipe.top || bird.y + bird.radius > pipe.top + gapHeight)) endGame();
+            if (inPipeX && (bird.y - bird.radius < pipe.top || bird.y + bird.radius > pipe.top + pipe.gap)) endGame();
             if (!pipe.scored && pipe.x + pipeWidth < bird.x) {
                 pipe.scored = true;
                 score += 1;
@@ -95,7 +97,7 @@
 
     function drawPipes() {
         for (const pipe of pipes) {
-            const bottomY = pipe.top + gapHeight();
+            const bottomY = pipe.top + pipe.gap;
             ctx.fillStyle = "#318a59";
             ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
             ctx.fillRect(pipe.x, bottomY, pipeWidth, height - groundHeight - bottomY);
