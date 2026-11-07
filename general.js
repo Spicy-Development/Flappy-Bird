@@ -15,7 +15,7 @@
     let pipeTimer = 0;
 
     function gapRandomFetch() {
-        return rand(148, 248);
+        return Math.random(148, 248);
     }
 
     function reset() {
